@@ -1,0 +1,160 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "v1/account.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Account"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/admin/api/account/v1/getUser": {
+      "get": {
+        "summary": "获取用户信息接口",
+        "description": "通过用户ID查询用户信息",
+        "operationId": "Account_GetUserInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserInfoReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id. 用户ID",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "pattern": "[\\w+]"
+          }
+        ],
+        "tags": [
+          "account"
+        ],
+        "x-version": "v1"
+      }
+    },
+    "/api/account/v1/getUser": {
+      "get": {
+        "summary": "获取用户信息接口",
+        "description": "通过用户ID查询用户信息",
+        "operationId": "Account_GetUserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserInfoReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id. 用户ID",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "pattern": "[\\w+]"
+          }
+        ],
+        "tags": [
+          "account"
+        ],
+        "x-version": "v1"
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetUserInfoReply": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "用户ID",
+          "maxLength": 1,
+          "pattern": "[\\w+]"
+        },
+        "username": {
+          "type": "string",
+          "title": "用户名"
+        },
+        "roleType": {
+          "$ref": "#/definitions/v1RoleType",
+          "title": "用户角色类型"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "截止时间"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "开始时间"
+        }
+      }
+    },
+    "v1RoleType": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED",
+        "Normal_USER",
+        "VIP_USER",
+        "ADMIN_USER",
+        "SUPPER_USER"
+      ],
+      "default": "UNDEFINED",
+      "title": "- UNDEFINED: 未定义用户类型\n - Normal_USER: 普通用户\n - VIP_USER: VIP 用户\n - ADMIN_USER: 应用管理员\n - SUPPER_USER: 超级管理员"
+    }
+  }
+}

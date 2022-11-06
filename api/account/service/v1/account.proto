@@ -1,0 +1,83 @@
+syntax = "proto3";
+package api.account.service.v1;
+
+option go_package = "github.com/weblfe/flyfire/api/account/service/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.account.service.v1";
+option objc_class_prefix = "APIAccountServiceV1";
+
+import "validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+service Account {
+
+  rpc GetUserInfo(GetUserInfoParams) returns(GetUserInfoReply) {
+    option (google.api.http) = {
+      get: "/api/account/v1/getUser"
+      additional_bindings: {
+        get: "/admin/api/account/v1/getUser",
+      }
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "获取用户信息接口",
+      description:"通过用户ID查询用户信息",
+      tags: ["account"],
+      extensions: {
+        key: "x-version",
+        value: {
+          string_value: "v1",
+        }
+      }
+    };
+  };
+
+}
+
+
+message GetUserInfoParams {
+  // 用户ID
+  string id = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    title: "id",
+    pattern: "[\\w+]",
+    max_length: 1,
+    required: ["id"],
+    description: "用户ID",
+  }, (validate.rules) = {
+    string: {
+      min_len: 1,
+      max_len: 128,
+    }
+  }];
+}
+
+message GetUserInfoReply {
+  // 用户ID
+  string id = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    pattern: "[\\w+]",
+    max_length: 1,
+  }];
+  // 用户名
+  string username = 2;
+  // 用户角色类型
+  RoleType role_type = 3;
+  // 截止时间
+  google.protobuf.Timestamp created_at = 10;
+  // 开始时间
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+enum RoleType {
+  // 未定义用户类型
+  UNDEFINED = 0000;
+  // 普通用户
+  Normal_USER = 0001;
+  // VIP 用户
+  VIP_USER = 0010;
+  // 应用管理员
+  ADMIN_USER = 0011;
+  // 超级管理员
+  SUPPER_USER = 0100;
+}

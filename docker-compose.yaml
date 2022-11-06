@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+  account:
+    build:
+      context: .
+      dockerfile: app/account/service/Dockerfile
+    image: weblfe/flyfire/account:${VERSION-1.0.0}
+    container_name: "flyfire_account"
+    ports:
+      - "19001:9000"
+    volumes:
+      - ".docker/configs/account:/data/conf"
+    networks:
+      - flyfire
+
+  builder:
+    image: golang:1.17
+    container_name: "builder"
+    entrypoint: ["sh","-c","/entrypoint.sh"]
+    environment:
+      - "PROTOC_HOME=/usr/bin/protoc"
+    privileged: true
+    volumes:
+      - ".:/go/src/github.com/weblfe/flyfire:rw"
+      - ".docker/protoc-3.19.4:/usr/bin/protoc:rw"
+      - ".docker/entrypoint.sh:/entrypoint.sh"
+      - ".docker/bashrc.sh:/root/.bashrc:rw"
+    networks:
+      - flyfire
+
+networks:
+  flyfire:
+    external: true
