@@ -3,7 +3,7 @@ PROJECT_NAME?=github.com/weblfe/flyfire
 APP_LAYOUT?=https://github.com/go-kratos/beer-shop
 SERVICE_LAYOUT?=https://gitee.com/go-kratos/kratos-layout
 COMMIT?=update
-RELEASE?=$(date)
+RELEASE?=$(date +"%Y%m%d")
 BRANCH?=release/sit/$(RELEASE)
 
 .PHONY: init
