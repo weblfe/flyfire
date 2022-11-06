@@ -12,8 +12,8 @@ func TestInt(t *testing.T) {
 		var (
 				as = assert.New(t)
 				cases = []struct{
-						min  int
-						max  int
+						min  uint
+						max  uint
 				}{
 						{
 								min: 0,
@@ -24,7 +24,7 @@ func TestInt(t *testing.T) {
 								max: 20,
 						},
 						{
-								min: -1,
+								min: 0,
 								max: math.MaxInt,
 						},
 						{
@@ -37,7 +37,21 @@ func TestInt(t *testing.T) {
 				t.Run(fmt.Sprintf("random.Int(%d,%d)",v.min,v.max), func(t *testing.T) {
 						r:=random.Int(v.min,v.max)
 						t.Logf("r=%d",r)
-						as.True(r>=v.min && r<=v.max,"随机数异常" )
+						as.True(r>=min(v.min,v.max) && r<=max(v.min,v.max),"随机数异常" )
 				})
 		}
+}
+
+func min(v,v2 uint) uint  {
+		if v <= v2 {
+				return v
+		}
+		return v2
+}
+
+func max(v,v2 uint) uint  {
+		if v >= v2 {
+				return v
+		}
+		return v2
 }
