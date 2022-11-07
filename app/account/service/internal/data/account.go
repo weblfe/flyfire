@@ -23,6 +23,7 @@ func NewAccountRepo(data *Data, logger log.Logger) biz.AccountRepo {
 
 
 func (r *accountRepo) FindByID(ctx context.Context, id string) (*biz.Account, error) {
+	// r.data.GetDb(ctx).Where()
 	return &biz.Account{
 			ID:       "",
 			Username: "",
