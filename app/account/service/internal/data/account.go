@@ -2,9 +2,9 @@ package data
 
 import (
 	"context"
+	"xorm.io/builder"
 
 	"githu.com/weblfe/flyfire/app/account/service/internal/biz"
-
 	"github.com/go-kratos/kratos/v2/log"
 )
 
@@ -21,11 +21,11 @@ func NewAccountRepo(data *Data, logger log.Logger) biz.AccountRepo {
 	}
 }
 
-
 func (r *accountRepo) FindByID(ctx context.Context, id string) (*biz.Account, error) {
-	// r.data.GetDb(ctx).Where()
+	r.data.GetDb(ctx).Get(builder.In(""))
+
 	return &biz.Account{
-			ID:       "",
-			Username: "",
+		ID:       "",
+		Username: "",
 	}, nil
 }

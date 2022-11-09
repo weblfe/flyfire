@@ -9,35 +9,87 @@ import "google/protobuf/duration.proto";
 message Bootstrap {
   Server server = 1;
   Data data = 2;
+  Registrar registrar = 3;
+  ConfigCenter config_center = 4;
+}
+
+message GRPC {
+  string network = 1;
+  string addr = 2;
+  google.protobuf.Duration timeout = 3;
+}
+
+message HTTP {
+  string network = 1;
+  string addr = 2;
+  google.protobuf.Duration timeout = 3;
 }
 
 message Server {
-  message HTTP {
-    string network = 1;
-    string addr = 2;
-    google.protobuf.Duration timeout = 3;
-  }
-  message GRPC {
-    string network = 1;
-    string addr = 2;
-    google.protobuf.Duration timeout = 3;
-  }
   HTTP http = 1;
   GRPC grpc = 2;
 }
 
+message Redis {
+  string network = 1;
+  string addr = 2;
+  string auth = 3;
+  google.protobuf.Duration read_timeout = 4;
+  google.protobuf.Duration write_timeout = 5;
+}
+
+message Database {
+  string driver = 1;
+  string source = 2;
+}
+
 message Data {
-  message Database {
-    string driver = 1;
-    string source = 2;
-  }
-  message Redis {
-    string network = 1;
-    string addr = 2;
-    string auth = 3;
-    google.protobuf.Duration read_timeout = 4;
-    google.protobuf.Duration write_timeout = 5;
-  }
   Database database = 1;
   Redis redis = 2;
+}
+
+message NacosServer {
+  string address = 1;
+  uint64 port = 2;
+}
+
+message NacosSource {
+  string data_id = 1;
+  string group = 2;
+}
+
+message Nacos {
+  repeated NacosServer servers = 1;
+  repeated NacosSource sources = 2;
+  NacosConn conn = 3;
+}
+
+message NacosConn {
+  string  username = 1;
+  string  password = 2;
+  string  cache_dir = 3;
+  string  log_dir = 4;
+  string  log_level = 5;
+  int64   timeout = 6;
+  string  namespace = 7;
+  int64   max_backups = 8;
+  uint64  rolling_max_age = 9;
+  uint64  rolling_max_size = 10;
+  uint64  update_thread_num = 11;
+  bool    not_load_cache_at_start = 12;
+}
+
+message Etcd {
+
+}
+
+message Registrar {
+  string app_name = 1;
+  Nacos nacos = 2;
+  Etcd etcd = 3;
+}
+
+message ConfigCenter {
+  Nacos nacos = 1;
+  Etcd etcd = 2;
 }
