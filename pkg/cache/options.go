@@ -2,7 +2,7 @@ package cache
 
 import (
 	"fmt"
-	"githu.com/weblfe/flyfire/pkg/codec"
+	"github.com/weblfe/flyfire/pkg/codec"
 	"strconv"
 	"time"
 )

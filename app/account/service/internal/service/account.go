@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"githu.com/weblfe/flyfire/api/account/service/v1"
-	"githu.com/weblfe/flyfire/app/account/service/internal/biz"
+	"github.com/weblfe/flyfire/api/account/service/v1"
+	"github.com/weblfe/flyfire/app/account/service/internal/biz"
 )
 
 // AccountService is an account service.

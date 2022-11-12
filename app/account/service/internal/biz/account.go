@@ -4,7 +4,7 @@ import (
 	"context"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"githu.com/weblfe/flyfire/api/account/service/v1"
+	"github.com/weblfe/flyfire/api/account/service/v1"
 
 	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/log"

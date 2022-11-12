@@ -1,10 +1,9 @@
-module githu.com/weblfe/flyfire
+module github.com/weblfe/flyfire
 
 go 1.17
 
 require (
 	github.com/envoyproxy/protoc-gen-validate v0.1.0
-	github.com/go-kratos/kratos/contrib/config/etcd/v2 v2.0.0-20221108015907-e9ef3eea2daa
 	github.com/go-kratos/kratos/contrib/config/nacos/v2 v2.0.0-20221109093732-275f815e407d
 	github.com/go-kratos/kratos/contrib/registry/etcd/v2 v2.0.0-20221108015907-e9ef3eea2daa
 	github.com/go-kratos/kratos/contrib/registry/nacos/v2 v2.0.0-20221109093732-275f815e407d
@@ -15,6 +14,7 @@ require (
 	github.com/joho/godotenv v1.4.0
 	github.com/json-iterator/go v1.1.12
 	github.com/nacos-group/nacos-sdk-go v1.1.2
+	go.etcd.io/etcd/client/v3 v3.5.4
 	go.uber.org/automaxprocs v1.5.1
 	google.golang.org/genproto v0.0.0-20221027153422-115e99e71e1c
 	google.golang.org/grpc v1.50.1
@@ -34,6 +34,7 @@ require (
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-errors/errors v1.0.1 // indirect
+	github.com/go-kratos/kratos/contrib/config/etcd/v2 v2.0.0-20221108015907-e9ef3eea2daa // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-playground/form/v4 v4.2.0 // indirect
@@ -53,7 +54,6 @@ require (
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.4 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.4 // indirect
-	go.etcd.io/etcd/client/v3 v3.5.4 // indirect
 	go.opentelemetry.io/otel v1.7.0 // indirect
 	go.opentelemetry.io/otel/trace v1.7.0 // indirect
 	go.uber.org/atomic v1.7.0 // indirect

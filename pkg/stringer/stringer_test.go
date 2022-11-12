@@ -1,12 +1,12 @@
 package stringer_test
 
 import (
-	"bytes"
-	"fmt"
-	"githu.com/weblfe/flyfire/pkg/stringer"
-	"github.com/stretchr/testify/assert"
-	"reflect"
-	"testing"
+		"bytes"
+		"fmt"
+		"github.com/stretchr/testify/assert"
+		"github.com/weblfe/flyfire/pkg/stringer"
+		"reflect"
+		"testing"
 )
 
 func TestBuffer_Append(t *testing.T) {

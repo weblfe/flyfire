@@ -1,11 +1,11 @@
 package orm
 
 import (
-	"fmt"
-	"githu.com/weblfe/flyfire/pkg/env"
-	_ "github.com/go-sql-driver/mysql"
-	"strings"
-	"xorm.io/xorm"
+		"fmt"
+		_ "github.com/go-sql-driver/mysql"
+		"github.com/weblfe/flyfire/pkg/env"
+		"strings"
+		"xorm.io/xorm"
 )
 
 type Conn = xorm.EngineInterface

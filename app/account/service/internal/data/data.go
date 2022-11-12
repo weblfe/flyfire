@@ -1,19 +1,24 @@
 package data
 
 import (
-	"context"
-	"githu.com/weblfe/flyfire/app/account/service/internal/conf"
-	"githu.com/weblfe/flyfire/pkg/cache"
-	"githu.com/weblfe/flyfire/pkg/orm"
-	"github.com/go-redis/redis/v8"
-	"xorm.io/xorm"
+		"context"
+		"github.com/go-kratos/kratos/v2/registry"
+		"github.com/go-redis/redis/v8"
+		"github.com/weblfe/flyfire/app/account/service/internal/conf"
+		"github.com/weblfe/flyfire/pkg/cache"
+		"github.com/weblfe/flyfire/pkg/orm"
+		"xorm.io/xorm"
 
-	"github.com/go-kratos/kratos/v2/log"
-	"github.com/google/wire"
+		"github.com/go-kratos/kratos/v2/log"
+		"github.com/google/wire"
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewDbClient,NewRedisClient, NewAccountRepo)
+var ProviderSet = wire.NewSet(
+		NewData,NewAccountRepo,
+		NewDbClient,NewRedisClient,
+		NewDiscovery,NewRegistrar,
+		)
 
 // Data .
 type Data struct {
@@ -27,13 +32,22 @@ func NewDbClient(c *conf.Data) (orm.Conn, error) {
 	)
 }
 
-func NewRedisClient(c *conf.Data_Redis) (*redis.Client, error) {
+func NewRedisClient(c *conf.Redis) (*redis.Client, error) {
 	return cache.NewClient(
 		cache.WithAuth(c.Auth),
 		cache.AddressSource(c.Addr),
 		cache.WithNetwork(c.Network),
 	)
 }
+
+func NewDiscovery(conf *conf.Registry) registry.Discovery {
+		return nil
+}
+
+func NewRegistrar(conf *conf.Registry) registry.Registrar {
+		return nil
+}
+
 
 func NewCacheClient(c *conf.Data) cache.Cache {
 		return cache.New()

@@ -1,11 +1,11 @@
 package data
 
 import (
-	"context"
-	"xorm.io/builder"
+		"context"
+		"xorm.io/builder"
 
-	"githu.com/weblfe/flyfire/app/account/service/internal/biz"
-	"github.com/go-kratos/kratos/v2/log"
+		"github.com/go-kratos/kratos/v2/log"
+		"github.com/weblfe/flyfire/app/account/service/internal/biz"
 )
 
 type accountRepo struct {

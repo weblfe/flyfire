@@ -7,13 +7,13 @@
 package main
 
 import (
-	"githu.com/weblfe/flyfire/app/account/service/internal/biz"
-	"githu.com/weblfe/flyfire/app/account/service/internal/conf"
-	"githu.com/weblfe/flyfire/app/account/service/internal/data"
-	"githu.com/weblfe/flyfire/app/account/service/internal/server"
-	"githu.com/weblfe/flyfire/app/account/service/internal/service"
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/weblfe/flyfire/app/account/service/internal/biz"
+	"github.com/weblfe/flyfire/app/account/service/internal/conf"
+	"github.com/weblfe/flyfire/app/account/service/internal/data"
+	"github.com/weblfe/flyfire/app/account/service/internal/server"
+	"github.com/weblfe/flyfire/app/account/service/internal/service"
 )
 
 import (
@@ -23,7 +23,9 @@ import (
 // Injectors from wire.go:
 
 // wireApp init kratos application.
-func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
+func wireApp(arg []string, registry *conf.Registry, confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
+	registrar := data.NewRegistrar(registry)
+	v := server.NewEndpoints(arg)
 	engineInterface, err := data.NewDbClient(confData)
 	if err != nil {
 		return nil, nil, err
@@ -37,7 +39,7 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	accountService := service.NewAccountService(accountUseCase)
 	grpcServer := server.NewGRPCServer(confServer, accountService, logger)
 	httpServer := server.NewHTTPServer(confServer, accountService, logger)
-	app := newApp(logger, grpcServer, httpServer)
+	app := newApp(registrar, v, logger, grpcServer, httpServer)
 	return app, func() {
 		cleanup()
 	}, nil

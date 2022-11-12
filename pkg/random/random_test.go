@@ -2,8 +2,8 @@ package random_test
 
 import (
 		"fmt"
-		"githu.com/weblfe/flyfire/pkg/random"
 		"github.com/stretchr/testify/assert"
+		"github.com/weblfe/flyfire/pkg/random"
 		"math"
 		"testing"
 )

@@ -1,9 +1,9 @@
 package server
 
 import (
-  "githu.com/weblfe/flyfire/api/account/service/v1"
-	"githu.com/weblfe/flyfire/app/account/service/internal/conf"
-	"githu.com/weblfe/flyfire/app/account/service/internal/service"
+  "github.com/weblfe/flyfire/api/account/service/v1"
+	"github.com/weblfe/flyfire/app/account/service/internal/conf"
+	"github.com/weblfe/flyfire/app/account/service/internal/service"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"

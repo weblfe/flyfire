@@ -1,6 +1,6 @@
 package codec
 
-import "githu.com/weblfe/flyfire/pkg/json"
+import "github.com/weblfe/flyfire/pkg/json"
 
 type jsonCodec struct {}
 

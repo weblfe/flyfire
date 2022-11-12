@@ -1,0 +1,10 @@
+nacos:
+  server:
+    - address: 127.0.0.1
+      port: 8848
+  client:
+    namespace: flyfire
+    username: flyfire
+    password: nacos
+  disable_config_client: true
+  disable_register: false

@@ -1,7 +1,7 @@
 package stringer
 
 import (
-	"githu.com/weblfe/flyfire/pkg/random"
+	"github.com/weblfe/flyfire/pkg/random"
 	"math"
 	"math/rand"
 	"sort"

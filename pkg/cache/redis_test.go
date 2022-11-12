@@ -2,10 +2,10 @@ package cache_test
 
 import (
 		"context"
-		"githu.com/weblfe/flyfire/pkg/cache"
-		"githu.com/weblfe/flyfire/pkg/env"
 		"github.com/stretchr/testify/assert"
-	"testing"
+		"github.com/weblfe/flyfire/pkg/cache"
+		"github.com/weblfe/flyfire/pkg/env"
+		"testing"
 )
 
 func init() {
