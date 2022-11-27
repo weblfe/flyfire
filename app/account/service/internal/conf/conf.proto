@@ -41,11 +41,13 @@ message Redis {
 message Database {
   string driver = 1;
   string source = 2;
+  bool  show_debug =3;
 }
 
 message Data {
   Database database = 1;
   Redis redis = 2;
+  Cache cache = 3;
 }
 
 message NacosServer {
@@ -73,17 +75,17 @@ message NacosClient {
   string  cache_dir = 3;
   string  log_dir = 4;
   string  log_level = 5;
-  uint64   timeout = 6;
+  uint64  timeout = 6;
   string  namespace = 7;
   int64   max_backups = 8;
-  int64  rolling_max_age = 9;
-  int64  rolling_max_size = 10;
+  int64   rolling_max_age = 9;
+  int64   rolling_max_size = 10;
   uint64  update_thread_num = 11;
   bool    not_load_cache_at_start = 12;
 }
 
 message Etcd {
-
+  repeated string endpoint =1;
 }
 
 message Registry {
@@ -100,4 +102,9 @@ message ConfigCenter {
 message  NacosConfigSources {
   string data_id = 1;
   string group = 2;
+}
+
+message Cache {
+  string driver = 1;
+  map<string,string> properties = 3;
 }

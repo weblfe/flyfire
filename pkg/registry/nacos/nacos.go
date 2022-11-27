@@ -80,6 +80,16 @@ func WithGlobal(g *Global) Option {
 	}
 }
 
+func NewGlobal(name string) *Global {
+	return &Global{
+		AppName: name,
+	}
+}
+
+func NewSources[T any](sources ...T) []T {
+	return sources
+}
+
 func (g *Global) GetAppName() string {
 	return g.AppName
 }
