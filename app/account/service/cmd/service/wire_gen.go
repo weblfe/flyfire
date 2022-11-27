@@ -24,7 +24,10 @@ import (
 
 // wireApp init kratos application.
 func wireApp(arg []string, registry *conf.Registry, confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
-	registrar := data.NewRegistrar(registry)
+	registrar, err := data.NewRegistrar(registry)
+	if err != nil {
+		return nil, nil, err
+	}
 	v := server.NewEndpoints(arg)
 	engineInterface, err := data.NewDbClient(confData)
 	if err != nil {
